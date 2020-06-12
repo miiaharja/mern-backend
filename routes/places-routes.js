@@ -5,6 +5,7 @@ const placesControllers = require("../controllers/places-controllers");
 const fileUpload = require("../middleware/file-upload");
 
 const HttpError = require("../models/http-error");
+const checkAuth = require("../middleware/check-auth");
 
 const router = express.Router();
 
@@ -15,6 +16,8 @@ router.get(
 );
 
 router.get("/user/:uid", placesControllers.getPlacesByUserId);
+
+router.use(checkAuth);
 
 router.post(
   "/",
