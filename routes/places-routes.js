@@ -6,6 +6,7 @@ const fileUpload = require("../middleware/file-upload");
 
 const HttpError = require("../models/http-error");
 const checkAuth = require("../middleware/check-auth");
+const awsSignup = require("../middleware/aws-files");
 
 const router = express.Router();
 
@@ -22,6 +23,7 @@ router.use(checkAuth);
 router.post(
   "/",
   fileUpload.single('image'),
+  awsSignup,
   [
     check("title").not().isEmpty(),
     check("description").isLength({ min: 5 }),

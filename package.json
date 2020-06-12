@@ -11,6 +11,7 @@
   "author": "Miia Harja",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.696.0",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",

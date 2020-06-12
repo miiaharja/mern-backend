@@ -3,6 +3,7 @@ const { check } = require("express-validator");
 
 const usersController = require("../controllers/users-controllers");
 const fileUpload = require("../middleware/file-upload");
+const awsSignup = require("../middleware/aws-files");
 
 const HttpError = require("../models/http-error");
 
@@ -13,6 +14,7 @@ router.get("/", usersController.getUsers);
 router.post(
   "/signup",
   fileUpload.single("image"),
+  awsSignup,
   [
     check("name").not().isEmpty(),
     check("email").normalizeEmail().isEmail(),
