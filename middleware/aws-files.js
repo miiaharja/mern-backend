@@ -19,15 +19,13 @@ const awsSignup = (req, res, next) => {
 
   s3.upload(params, (err, data) => {
     if (err) {
-      console.log("Error occured while trying to upload to S3 bucket", err);
       return next(
         new HttpError("Error occured while trying to upload image", 500)
       );
     }
 
     if (data) {
-      console.log(req.file.path);
-      fs.unlinkSync(req.file.path); // Empty temp folder
+      fs.unlinkSync(req.file.path); // Empty image folder
       req.file.path = data.Location;
       next();
     }
